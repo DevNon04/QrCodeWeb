@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="<%= __('lang') %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= __('title-wifi') %></title>
+
+    <meta name="description" content="<%= __('description-wifi') %>">
+    <meta itemprop="name" content="<%= __('title-wifi') %>">
+    <meta name="robots" content="index, follow">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="<%= __('title-wifi') %>">
+    <meta name="twitter:description" content="<%= __('description-wifi') %>">
+    <meta name="twitter:image:src" content="/images/favicon.png"/>
+    <meta name="twitter:site" content="qrmeup.me"/>
+
+    <meta property="og:title" content="<%= __('title-wifi') %>">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://qrmeup.me"/>
+    <meta property="og:image" content="/images/favicon.png"/>
+    <meta property="og:description" content="<%= __('description-wifi') %>">
+    <meta property="og:site_name" content="qrmeup.me"/>
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/images/favicon.png">
+    <link rel="shortcut icon" sizes="192x192" href="/images/favicon.png">
+    <meta name="google" content="notranslate"/>
+
+    <link rel="alternate" hreflang="x-default" href="https://qrmeup.me/">
+    <link rel="canonical" href="https://qrmeup.me/">
+    <link rel="alternate" hreflang="vi" href="https://qrmeup.me/vi"/>
+    <link rel="alternate" hreflang="en" href="https://qrmeup.me/en"/>
+
+    <style type="text/css">
+        :root {
+            --header-height: 3.5rem;
+            --black-color: #171c26;
+            --black-color-light: #1d232f;
+            --black-color-lighten: #252b37;
+            --white-color: #fff;
+            --body-color: #f0f5ff;
+            --normal-font-size: .938rem;
+            --font-regular: 400;
+            --font-semi-bold: 600;
+            --z-tooltip: 10;
+            --z-fixed: 100
+        }
+
+        @media screen and (min-width: 1024px) {
+            :root {
+                --normal-font-size: 1rem
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0
+        }
+
+        body {
+            font-family: system-ui;
+            font-size: var(--normal-font-size);
+            background-color: var(--body-color)
+        }
+
+        ul {
+            list-style: none
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .container-header {
+            max-width: 1100px;
+            margin-inline: 1.5rem
+        }
+
+        .header {
+            top: 0;
+            left: 0;
+            position: fixed;
+            width: 100%;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 16px rgba(14, 18, 27, .3);
+            z-index: var(--z-fixed)
+        }
+
+        .nav-header {
+            height: var(--header-height)
+        }
+
+        .nav__burger, .nav__close, .nav__logo {
+            color: var(--black-color)
+        }
+
+        .nav__data {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .nav__logo {
+            display: inline-flex;
+            align-items: center;
+            column-gap: .25rem;
+            font-weight: var(--font-semi-bold)
+        }
+
+        .nav__logo i {
+            font-weight: 400;
+            font-size: 1.25rem
+        }
+
+        .nav__toggle {
+            position: relative;
+            width: 32px;
+            height: 32px
+        }
+
+        .nav__burger, .nav__close {
+            position: absolute;
+            width: max-content;
+            height: max-content;
+            inset: 0;
+            margin: auto;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: opacity .1s, transform .4s
+        }
+
+        .nav__close {
+            opacity: 0
+        }
+
+        .content-image {
+            display: flex;
+            margin-top: 30px
+        }
+
+        .container-container-form {
+            width: 70%;
+            display: flex;
+            margin: 0 auto;
+            min-height: 350px;
+        }
+
+        .container-form {
+            width: 80%;
+            display: flex;
+            padding-top: 25px;
+            justify-content: center
+        }
+
+        .container-form, .container-result {
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 3px 5px 15px rgba(0, 0, 0, .12);
+            min-height: 390px;
+        }
+
+        .container-result {
+            width: 40%;
+            margin-left: 20px
+        }
+
+        .button {
+            position: relative;
+            padding: 12px 18px;
+            background: #242424;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 40%
+        }
+
+        .qr-code-container img {
+            width: 65%;
+            border-radius: 20px
+        }
+
+        #qrCodeContainer {
+            gap: 20px;
+            min-height: 250px
+        }
+
+        #qrCodeContainer, .qr-code-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        @media screen and (max-width: 1118px) {
+            .nav__menu {
+                position: absolute;
+                left: 0;
+                top: 2.5rem;
+                width: 100%;
+                height: calc(100vh - 3.5rem);
+                overflow: auto;
+                pointer-events: none;
+                opacity: 0;
+                transition: top .4s, opacity .3s
+            }
+
+            .nav__menu::-webkit-scrollbar {
+                width: 0
+            }
+
+            .nav__list {
+                background-color: var(--white-color);
+                padding-top: 1rem
+            }
+
+            .container-container-form {
+                width: 80%
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .container-container-form {
+                width: 90%
+            }
+        }
+
+        @media screen and (max-width: 750px) {
+            .container-container-form {
+                display: block
+            }
+
+            .qr-code-container img {
+                width: 40%;
+                border-radius: 20px
+            }
+
+            .container-form {
+                width: 100%;
+                min-height: 200px
+            }
+
+            #qrCodeContainer {
+                width: 100%;
+                margin-top: 20px;
+                margin-left: 0;
+                min-height: 430px;
+            }
+
+            .content-image {
+                display: block;
+                margin-top: 20px
+            }
+
+            .content-chill {
+                margin-left: 0;
+                margin-bottom: 10px;
+                margin-top: 10px
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .qr-code-container img {
+                width: 65%;
+                border-radius: 20px
+            }
+        }
+
+        .nav__link {
+            color: var(--black-color);
+            font-weight: var(--font-semi-bold);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color .3s
+        }
+
+        .nav__link, .nav__link:hover {
+            background-color: var(--white-color)
+        }
+
+        .show-menu {
+            opacity: 1;
+            top: 3.5rem;
+            pointer-events: auto
+        }
+
+        .show-icon .nav__burger {
+            opacity: 0;
+            transform: rotate(90deg)
+        }
+
+        .show-icon .nav__close {
+            opacity: 1;
+            transform: rotate(90deg)
+        }
+
+        .dropdown__item {
+            cursor: pointer
+        }
+
+        .dropdown__arrow {
+            font-size: 1.25rem;
+            font-weight: 400;
+            transition: transform .4s
+        }
+
+        .dropdown__link, .dropdown__sublink {
+            padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+            color: var(--black-color);
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+            column-gap: .5rem;
+            font-weight: var(--font-semi-bold);
+            transition: background-color .3s;
+            flex: 1
+        }
+
+        .dropdown__link i, .dropdown__sublink i {
+            font-size: 1.25rem;
+            font-weight: 400
+        }
+
+        .dropdown__link:hover, .dropdown__sublink:hover {
+            background-color: var(--black-color);
+            color: var(--white-color)
+        }
+
+        .dropdown__menu, .dropdown__submenu {
+            max-height: 0;
+            transition: max-height .4s ease-out
+        }
+
+        .dropdown__item:hover .dropdown__menu, .dropdown__subitem:hover > .dropdown__submenu {
+            max-height: 1000px;
+            transition: max-height .4s ease-in
+        }
+
+        .dropdown__item:hover .dropdown__arrow {
+            transform: rotate(180deg)
+        }
+
+        @media screen and (max-width: 340px) {
+            .container-header {
+                margin-inline: 1rem
+            }
+
+            .nav__link {
+                padding-inline: 1rem
+            }
+
+            .button {
+                font-size: 10px;
+                width: 120px
+            }
+        }
+
+        @media screen and (min-width: 1118px) {
+            .container-header {
+                margin-inline: auto
+            }
+
+            .nav-header {
+                height: calc(var(--header-height) + 2rem);
+                display: flex;
+                justify-content: space-between
+            }
+
+            .nav__toggle {
+                display: none
+            }
+
+            .nav__list {
+                height: 100%;
+                display: flex;
+                column-gap: 3rem
+            }
+
+            .nav__link {
+                height: 100%;
+                padding: 0;
+                justify-content: normal;
+                column-gap: .25rem
+            }
+
+            .nav__link:hover {
+                background-color: transparent
+            }
+
+            .dropdown__item, .dropdown__subitem {
+                position: relative
+            }
+
+            .dropdown__menu, .dropdown__submenu {
+                max-height: none;
+                overflow: initial;
+                position: absolute;
+                left: -300px;
+                top: 6rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .3s, top .3s
+            }
+
+            .dropdown__link, .dropdown__sublink {
+                padding-inline: 1rem 3.5rem
+            }
+
+            .dropdown__subitem .dropdown__link {
+                padding-inline: 1rem
+            }
+
+            .dropdown__submenu {
+                position: absolute;
+                left: 100%;
+                top: .5rem
+            }
+
+            .dropdown__item:hover .dropdown__menu {
+                opacity: 1;
+                top: 5.5rem;
+                pointer-events: auto;
+                transition: top .3s
+            }
+
+            .dropdown__subitem:hover > .dropdown__submenu {
+                opacity: 1;
+                top: 0;
+                pointer-events: auto;
+                transition: top .3s
+            }
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center
+        }
+
+        .input {
+            width: 100%;
+            min-height: 50px;
+            padding: .5rem 1rem;
+            background-color: #f2f2f2;
+            box-shadow: none;
+            border-radius: 6px 0 0 6px;
+            border: 1px solid #e0e0e0;
+            color: #5d5d5d
+        }
+
+        .button--submit {
+            min-height: 50px;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            background-color: #242424;
+            color: #fff;
+            font-size: 13px;
+            padding-left: 10px;
+            padding-right: 10px;
+            cursor: pointer;
+            transition: background-color .3s ease-in-out
+        }
+
+        .button--submit:hover {
+            background-color: #5e5dcd
+        }
+
+        .input:focus, .input:focus-visible {
+            border-color: #3898ec;
+            outline: none
+        }
+
+
+        .qr-code-container {
+            width: 100%;
+            height: 100%
+        }
+
+
+        .button:active {
+            background: #242424
+        }
+
+        .button__text {
+            color: #fff;
+            transition: all .2s
+        }
+
+        .button--loading .button__text {
+            visibility: hidden;
+            opacity: 0
+        }
+
+        .button--loading:after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite
+        }
+
+        @keyframes button-loading-spinner {
+            0% {
+                transform: rotate(0turn)
+            }
+            to {
+                transform: rotate(1turn)
+            }
+        }
+
+        .Btn {
+            width: 80%;
+            height: 50px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1b1b1b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition-duration: .3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, .11);
+            color: #fff;
+            font-size: 11px
+        }
+
+        .svgIcon {
+            fill: #2196f3
+        }
+
+        .icon2 {
+            width: 18px;
+            height: 5px;
+            border-bottom: 2px solid #2196f3;
+            border-left: 2px solid #2196f3;
+            border-right: 2px solid #2196f3;
+            margin-bottom: 10px
+        }
+
+        .Btn:hover {
+            opacity: 1;
+            background-color: #2196f3;
+            transition-duration: .3s
+        }
+
+        .Btn:hover .icon2 {
+            border-bottom: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #fff
+        }
+
+        .Btn:hover .svgIcon {
+            fill: #fff;
+            animation: slide-in-top .6s cubic-bezier(.25, .46, .45, .94) both
+        }
+
+        @keyframes slide-in-top {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1
+            }
+        }
+
+        .container-download {
+            display: flex;
+            justify-content: space-between
+        }
+
+        #loading2 {
+            position: absolute;
+            width: 2.25em;
+            transform-origin: center;
+            animation: rotate4 2s linear infinite
+        }
+
+        circle {
+            fill: none;
+            stroke: #3189fc;
+            stroke-width: 2;
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            stroke-linecap: round;
+            animation: dash4 1.5s ease-in-out infinite
+        }
+
+        @keyframes rotate4 {
+            to {
+                transform: rotate(1turn)
+            }
+        }
+
+        @keyframes dash4 {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0
+            }
+            50% {
+                stroke-dasharray: 90, 200;
+                stroke-dashoffset: -35px
+            }
+            to {
+                stroke-dashoffset: -125px
+            }
+        }
+
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: background-color .4s;
+            margin-top: 20px;
+            border-radius: 10px;
+            position: relative;
+            padding: 18px 55px 18px 18px
+        }
+
+        .accordion:hover, .active {
+            background-color: #ccc
+        }
+
+        .panel {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .2s ease-out
+        }
+
+        .panel p {
+            margin-block-start: 1.3em;
+            text-align: justify
+        }
+
+        .accordion i {
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translateY(-50%);
+            transition: transform .4s
+        }
+
+        .accordion.active i {
+            transform: translateY(-50%) rotate(-180deg)
+        }
+
+        .mlr {
+            margin-left: 10px;
+            margin-right: 10px
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            bottom: 0
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .footer-content p {
+            margin: 5px 0
+        }
+
+        .footer-content a {
+            color: #fff;
+            text-decoration: none
+        }
+
+        @font-face {
+            font-family: remixicon;
+            src: url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.eot?t=1681573354175);
+            src: url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.eot?t=1681573354175#iefix) format("embedded-opentype"), url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.woff2?t=1681573354175) format("woff2"), url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.woff?t=1681573354175) format("woff"), url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.ttf?t=1681573354175) format("truetype"), url(https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.svg?t=1681573354175#remixicon) format("svg");
+            font-display: swap
+        }
+
+        [class*=" ri-"], [class^=ri-] {
+            font-family: remixicon !important;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale
+        }
+
+        .ri-sm {
+            font-size: .875em
+        }
+
+        .ri-a-b:before {
+            content: "\ea05"
+        }
+
+        .ri-alert-fill:before {
+            content: "\ea20"
+        }
+
+        .ri-alert-line:before {
+            content: "\ea21"
+        }
+
+        .ri-align-bottom:before {
+            content: "\ea24"
+        }
+
+        .ri-align-center:before {
+            content: "\ea25"
+        }
+
+        .ri-align-justify:before {
+            content: "\ea26"
+        }
+
+        .ri-align-left:before {
+            content: "\ea27"
+        }
+
+        .ri-align-right:before {
+            content: "\ea28"
+        }
+
+        .ri-align-top:before {
+            content: "\ea29"
+        }
+
+        .ri-android-fill:before {
+            content: "\ea35"
+        }
+
+        .ri-android-line:before {
+            content: "\ea36"
+        }
+
+        .ri-arrow-down-circle-fill:before {
+            content: "\ea49"
+        }
+
+        .ri-arrow-down-circle-line:before {
+            content: "\ea4a"
+        }
+
+        .ri-arrow-down-fill:before {
+            content: "\ea4b"
+        }
+
+        .ri-arrow-down-line:before {
+            content: "\ea4c"
+        }
+
+        .ri-arrow-down-s-fill:before {
+            content: "\ea4d"
+        }
+
+        .ri-arrow-down-s-line:before {
+            content: "\ea4e"
+        }
+
+        .ri-arrow-left-circle-fill:before {
+            content: "\ea5b"
+        }
+
+        .ri-arrow-left-circle-line:before {
+            content: "\ea5c"
+        }
+
+        .ri-arrow-left-down-fill:before {
+            content: "\ea5d"
+        }
+
+        .ri-arrow-left-down-line:before {
+            content: "\ea5e"
+        }
+
+        .ri-arrow-left-fill:before {
+            content: "\ea5f"
+        }
+
+        .ri-arrow-left-line:before {
+            content: "\ea60"
+        }
+
+        .ri-arrow-left-right-fill:before {
+            content: "\ea61"
+        }
+
+        .ri-arrow-left-right-line:before {
+            content: "\ea62"
+        }
+
+        .ri-arrow-left-s-fill:before {
+            content: "\ea63"
+        }
+
+        .ri-arrow-left-s-line:before {
+            content: "\ea64"
+        }
+
+        .ri-arrow-left-up-fill:before {
+            content: "\ea65"
+        }
+
+        .ri-arrow-left-up-line:before {
+            content: "\ea66"
+        }
+
+        .ri-arrow-right-circle-fill:before {
+            content: "\ea67"
+        }
+
+        .ri-arrow-right-circle-line:before {
+            content: "\ea68"
+        }
+
+        .ri-arrow-right-down-fill:before {
+            content: "\ea69"
+        }
+
+        .ri-arrow-right-down-line:before {
+            content: "\ea6a"
+        }
+
+        .ri-arrow-right-fill:before {
+            content: "\ea6b"
+        }
+
+        .ri-arrow-right-line:before {
+            content: "\ea6c"
+        }
+
+        .ri-arrow-right-s-fill:before {
+            content: "\ea6d"
+        }
+
+        .ri-arrow-right-s-line:before {
+            content: "\ea6e"
+        }
+
+        .ri-arrow-right-up-fill:before {
+            content: "\ea6f"
+        }
+
+        .ri-arrow-right-up-line:before {
+            content: "\ea70"
+        }
+
+        .ri-arrow-up-circle-fill:before {
+            content: "\ea71"
+        }
+
+        .ri-arrow-up-circle-line:before {
+            content: "\ea72"
+        }
+
+        .ri-arrow-up-down-fill:before {
+            content: "\ea73"
+        }
+
+        .ri-arrow-up-down-line:before {
+            content: "\ea74"
+        }
+
+        .ri-arrow-up-fill:before {
+            content: "\ea75"
+        }
+
+        .ri-arrow-up-line:before {
+            content: "\ea76"
+        }
+
+        .ri-arrow-up-s-fill:before {
+            content: "\ea77"
+        }
+
+        .ri-arrow-up-s-line:before {
+            content: "\ea78"
+        }
+
+        .ri-at-fill:before {
+            content: "\ea82"
+        }
+
+        .ri-at-line:before {
+            content: "\ea83"
+        }
+
+        .ri-close-circle-fill:before {
+            content: "\eb96"
+        }
+
+        .ri-close-circle-line:before {
+            content: "\eb97"
+        }
+
+        .ri-close-fill:before {
+            content: "\eb98"
+        }
+
+        .ri-close-line:before {
+            content: "\eb99"
+        }
+
+        .ri-device-fill:before {
+            content: "\ec2d"
+        }
+
+        .ri-device-line:before {
+            content: "\ec2e"
+        }
+
+        .ri-download-2-fill:before {
+            content: "\ec53"
+        }
+
+        .ri-download-2-line:before {
+            content: "\ec54"
+        }
+
+        .ri-download-fill:before {
+            content: "\ec59"
+        }
+
+        .ri-download-line:before {
+            content: "\ec5a"
+        }
+
+        .ri-english-input:before {
+            content: "\ec9b"
+        }
+
+        .ri-file-2-fill:before {
+            content: "\ecc2"
+        }
+
+        .ri-file-2-line:before {
+            content: "\ecc3"
+        }
+
+        .ri-file-3-fill:before {
+            content: "\ecc4"
+        }
+
+        .ri-file-3-line:before {
+            content: "\ecc5"
+        }
+
+        .ri-file-4-fill:before {
+            content: "\ecc6"
+        }
+
+        .ri-file-4-line:before {
+            content: "\ecc7"
+        }
+
+        .ri-file-copy-2-fill:before {
+            content: "\ecd2"
+        }
+
+        .ri-file-copy-2-line:before {
+            content: "\ecd3"
+        }
+
+        .ri-file-copy-fill:before {
+            content: "\ecd4"
+        }
+
+        .ri-file-copy-line:before {
+            content: "\ecd5"
+        }
+
+        .ri-file-download-fill:before {
+            content: "\ecd8"
+        }
+
+        .ri-file-download-line:before {
+            content: "\ecd9"
+        }
+
+        .ri-file-fill:before {
+            content: "\ece0"
+        }
+
+        .ri-file-gif-fill:before {
+            content: "\ece3"
+        }
+
+        .ri-file-gif-line:before {
+            content: "\ece4"
+        }
+
+        .ri-file-line:before {
+            content: "\eceb"
+        }
+
+        .ri-file-list-2-fill:before {
+            content: "\ecec"
+        }
+
+        .ri-file-list-2-line:before {
+            content: "\eced"
+        }
+
+        .ri-file-list-3-fill:before {
+            content: "\ecee"
+        }
+
+        .ri-file-list-3-line:before {
+            content: "\ecef"
+        }
+
+        .ri-file-list-fill:before {
+            content: "\ecf0"
+        }
+
+        .ri-file-list-line:before {
+            content: "\ecf1"
+        }
+
+        .ri-file-reduce-fill:before {
+            content: "\ed02"
+        }
+
+        .ri-file-reduce-line:before {
+            content: "\ed03"
+        }
+
+        .ri-file-search-fill:before {
+            content: "\ed04"
+        }
+
+        .ri-file-search-line:before {
+            content: "\ed05"
+        }
+
+        .ri-file-settings-fill:before {
+            content: "\ed06"
+        }
+
+        .ri-file-settings-line:before {
+            content: "\ed07"
+        }
+
+        .ri-file-text-fill:before {
+            content: "\ed0e"
+        }
+
+        .ri-file-text-line:before {
+            content: "\ed0f"
+        }
+
+        .ri-file-upload-fill:before {
+            content: "\ed14"
+        }
+
+        .ri-file-upload-line:before {
+            content: "\ed15"
+        }
+
+        .ri-file-user-fill:before {
+            content: "\ed16"
+        }
+
+        .ri-file-user-line:before {
+            content: "\ed17"
+        }
+
+        .ri-font-size-2:before {
+            content: "\ed8c"
+        }
+
+        .ri-font-size:before {
+            content: "\ed8d"
+        }
+
+        .ri-google-fill:before {
+            content: "\edd4"
+        }
+
+        .ri-google-line:before {
+            content: "\edd5"
+        }
+
+        .ri-h-1:before {
+            content: "\ede6"
+        }
+
+        .ri-h-2:before {
+            content: "\ede7"
+        }
+
+        .ri-h-3:before {
+            content: "\ede8"
+        }
+
+        .ri-h-4:before {
+            content: "\ede9"
+        }
+
+        .ri-h-5:before {
+            content: "\edea"
+        }
+
+        .ri-h-6:before {
+            content: "\edeb"
+        }
+
+        .ri-html5-fill:before {
+            content: "\ee40"
+        }
+
+        .ri-html5-line:before {
+            content: "\ee41"
+        }
+
+        .ri-image-2-fill:before {
+            content: "\ee44"
+        }
+
+        .ri-image-2-line:before {
+            content: "\ee45"
+        }
+
+        .ri-image-fill:before {
+            content: "\ee4a"
+        }
+
+        .ri-image-line:before {
+            content: "\ee4b"
+        }
+
+        .ri-line-fill:before {
+            content: "\eeac"
+        }
+
+        .ri-line-height:before {
+            content: "\eead"
+        }
+
+        .ri-line-line:before {
+            content: "\eeae"
+        }
+
+        .ri-link-m:before {
+            content: "\eeaf"
+        }
+
+        .ri-link:before {
+            content: "\eeb2"
+        }
+
+        .ri-list-settings-fill:before {
+            content: "\eebc"
+        }
+
+        .ri-list-settings-line:before {
+            content: "\eebd"
+        }
+
+        .ri-loader-2-fill:before {
+            content: "\eec1"
+        }
+
+        .ri-loader-2-line:before {
+            content: "\eec2"
+        }
+
+        .ri-loader-3-fill:before {
+            content: "\eec3"
+        }
+
+        .ri-loader-3-line:before {
+            content: "\eec4"
+        }
+
+        .ri-loader-4-fill:before {
+            content: "\eec5"
+        }
+
+        .ri-loader-4-line:before {
+            content: "\eec6"
+        }
+
+        .ri-loader-5-fill:before {
+            content: "\eec7"
+        }
+
+        .ri-loader-5-line:before {
+            content: "\eec8"
+        }
+
+        .ri-loader-fill:before {
+            content: "\eec9"
+        }
+
+        .ri-loader-line:before {
+            content: "\eeca"
+        }
+
+        .ri-menu-2-fill:before {
+            content: "\ef31"
+        }
+
+        .ri-menu-2-line:before {
+            content: "\ef32"
+        }
+
+        .ri-menu-3-fill:before {
+            content: "\ef33"
+        }
+
+        .ri-menu-3-line:before {
+            content: "\ef34"
+        }
+
+        .ri-menu-4-fill:before {
+            content: "\ef35"
+        }
+
+        .ri-menu-4-line:before {
+            content: "\ef36"
+        }
+
+        .ri-menu-5-fill:before {
+            content: "\ef37"
+        }
+
+        .ri-menu-5-line:before {
+            content: "\ef38"
+        }
+
+        .ri-menu-fill:before {
+            content: "\ef3b"
+        }
+
+        .ri-menu-line:before {
+            content: "\ef3e"
+        }
+
+        .ri-message-2-fill:before {
+            content: "\ef43"
+        }
+
+        .ri-message-2-line:before {
+            content: "\ef44"
+        }
+
+        .ri-message-3-fill:before {
+            content: "\ef45"
+        }
+
+        .ri-message-3-line:before {
+            content: "\ef46"
+        }
+
+        .ri-message-fill:before {
+            content: "\ef47"
+        }
+
+        .ri-message-line:before {
+            content: "\ef48"
+        }
+
+        .ri-more-2-fill:before {
+            content: "\ef76"
+        }
+
+        .ri-more-2-line:before {
+            content: "\ef77"
+        }
+
+        .ri-more-fill:before {
+            content: "\ef78"
+        }
+
+        .ri-more-line:before {
+            content: "\ef79"
+        }
+
+        .ri-pulse-fill:before {
+            content: "\f034"
+        }
+
+        .ri-pulse-line:before {
+            content: "\f035"
+        }
+
+        .ri-question-answer-fill:before {
+            content: "\f042"
+        }
+
+        .ri-question-answer-line:before {
+            content: "\f043"
+        }
+
+        .ri-question-fill:before {
+            content: "\f044"
+        }
+
+        .ri-question-line:before {
+            content: "\f045"
+        }
+
+        .ri-reserved-fill:before {
+            content: "\f07b"
+        }
+
+        .ri-reserved-line:before {
+            content: "\f07c"
+        }
+
+        .ri-save-2-fill:before {
+            content: "\f0ae"
+        }
+
+        .ri-save-2-line:before {
+            content: "\f0af"
+        }
+
+        .ri-save-3-fill:before {
+            content: "\f0b0"
+        }
+
+        .ri-save-3-line:before {
+            content: "\f0b1"
+        }
+
+        .ri-save-fill:before {
+            content: "\f0b2"
+        }
+
+        .ri-save-line:before {
+            content: "\f0b3"
+        }
+
+        .ri-search-2-fill:before {
+            content: "\f0cc"
+        }
+
+        .ri-search-2-line:before {
+            content: "\f0cd"
+        }
+
+        .ri-search-fill:before {
+            content: "\f0d0"
+        }
+
+        .ri-search-line:before {
+            content: "\f0d1"
+        }
+
+        .ri-settings-2-fill:before {
+            content: "\f0e3"
+        }
+
+        .ri-settings-2-line:before {
+            content: "\f0e4"
+        }
+
+        .ri-settings-3-fill:before {
+            content: "\f0e5"
+        }
+
+        .ri-settings-3-line:before {
+            content: "\f0e6"
+        }
+
+        .ri-settings-4-fill:before {
+            content: "\f0e7"
+        }
+
+        .ri-settings-4-line:before {
+            content: "\f0e8"
+        }
+
+        .ri-settings-5-fill:before {
+            content: "\f0e9"
+        }
+
+        .ri-settings-5-line:before {
+            content: "\f0ea"
+        }
+
+        .ri-settings-6-fill:before {
+            content: "\f0eb"
+        }
+
+        .ri-settings-6-line:before {
+            content: "\f0ec"
+        }
+
+        .ri-settings-fill:before {
+            content: "\f0ed"
+        }
+
+        .ri-settings-line:before {
+            content: "\f0ee"
+        }
+
+        .ri-text:before {
+            content: "\f201"
+        }
+
+        .ri-time-fill:before {
+            content: "\f20e"
+        }
+
+        .ri-time-line:before {
+            content: "\f20f"
+        }
+
+        .ri-toggle-fill:before {
+            content: "\f218"
+        }
+
+        .ri-toggle-line:before {
+            content: "\f219"
+        }
+
+        .ri-upload-2-fill:before {
+            content: "\f249"
+        }
+
+        .ri-upload-2-line:before {
+            content: "\f24a"
+        }
+
+        .ri-upload-fill:before {
+            content: "\f24f"
+        }
+
+        .ri-upload-line:before {
+            content: "\f250"
+        }
+
+        .ri-user-2-fill:before {
+            content: "\f253"
+        }
+
+        .ri-user-2-line:before {
+            content: "\f254"
+        }
+
+        .ri-user-3-fill:before {
+            content: "\f255"
+        }
+
+        .ri-user-3-line:before {
+            content: "\f256"
+        }
+
+        .ri-user-4-fill:before {
+            content: "\f257"
+        }
+
+        .ri-user-4-line:before {
+            content: "\f258"
+        }
+
+        .ri-user-5-fill:before {
+            content: "\f259"
+        }
+
+        .ri-user-5-line:before {
+            content: "\f25a"
+        }
+
+        .ri-user-6-fill:before {
+            content: "\f25b"
+        }
+
+        .ri-user-6-line:before {
+            content: "\f25c"
+        }
+
+        .ri-user-fill:before {
+            content: "\f25f"
+        }
+
+        .ri-user-follow-fill:before {
+            content: "\f260"
+        }
+
+        .ri-user-follow-line:before {
+            content: "\f261"
+        }
+
+        .ri-user-line:before {
+            content: "\f264"
+        }
+
+        .ri-user-search-fill:before {
+            content: "\f26b"
+        }
+
+        .ri-user-search-line:before {
+            content: "\f26c"
+        }
+
+        .ri-user-settings-fill:before {
+            content: "\f26d"
+        }
+
+        .ri-user-settings-line:before {
+            content: "\f26e"
+        }
+
+        .ri-p2p-fill:before {
+            content: "\f34d"
+        }
+
+        .ri-p2p-line:before {
+            content: "\f34e"
+        }
+
+        ol {
+            margin-left: 30px
+        }
+    </style>
+    <style type="text/css">
+        svg {
+            width: 17px;
+            margin-right: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav-header container-header">
+        <div class="nav__data">
+            <a href="/" class="nav__logo">
+                <i class="ri-planet-line"></i> QRMeup
+            </a>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-menu-line nav__burger"></i>
+                <i class="ri-close-line nav__close"></i>
+            </div>
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="dropdown__item">
+                    <div class="nav__link">
+                        Language <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                    </div>
+
+                    <ul class="dropdown__menu">
+                        <li style="display: flex">
+                            <a href="/en/wifi" class="dropdown__link"> <i></i> English </a>
+                            <a href="/vi/wifi" class="dropdown__link"> <i></i> Vietnamese</a>
+                        </li>
+
+                        <li style="display: flex">
+                            <a href="/es/wifi" class="dropdown__link"> <i></i> Español </a>
+                            <a href="/fr/wifi" class="dropdown__link"> <i></i> Français </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/zh-CN/wifi" class="dropdown__link"> <i></i> 中文 </a>
+                            <a href="/de/wifi" class="dropdown__link"> <i></i> Deutsch </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/ja/wifi" class="dropdown__link"> <i></i> 日本語 </a>
+                            <a href="/ko/wifi" class="dropdown__link"> <i></i> 한국어 </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/pt/wifi" class="dropdown__link"> <i></i> Português </a>
+                            <a href="/it/wifi" class="dropdown__link"> <i></i> Italiano </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/hi/wifi" class="dropdown__link"> <i></i> हिन्दी </a>
+                            <a href="/ro/wifi" class="dropdown__link"> <i></i> Română </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/id/wifi" class="dropdown__link"> <i></i> Bahasa Indonesia </a>
+                            <a href="/my/wifi" class="dropdown__link"> <i></i> Bahasa Melayu </a>
+                        </li>
+                        <li style="display: flex">
+                            <a href="/th/wifi" class="dropdown__link"> <i></i> ไทย </a>
+                            <a href="/ru/wifi" class="dropdown__link"> <i></i>Русский </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<section style="margin-bottom: 50px">
+    <div class="title-body" style="margin-top: 150px;margin-bottom: 40px;">
+        <h1 style="text-align: center;color: #616568;"><%= __('title-body-wifi') %></h1>
+        <p style="text-align: center;margin-top: 3px;color: #616568"><%= __('title-chill-wifi') %></p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px;margin-left: 15px">
+            <div class="mr-3 mb-3"
+                 style="margin-right: 16px; margin-bottom: 16px;background: white;padding: 16px;border-radius: 8px;"
+                 data-toggle="tooltip" title="Văn bản đơn giản và rõ ràng được nhúng vào mã QR.">
+                <a href="/text" class="btn btn-light" style="display: flex;color: black;">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paragraph" role="img"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M192 32h64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H384l0 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-352H288V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H192c-88.4 0-160-71.6-160-160s71.6-160 160-160z"></path>
+                    </svg>
+                    Văn bản
+                </a>
+            </div>
+            <div class="mr-3 mb-3"
+                 style="margin-right: 16px; margin-bottom: 16px;background: white;padding: 16px;border-radius: 8px;"
+                 data-toggle="tooltip" title="Gửi ai đó đến một liên kết.">
+                <a href="/" class="btn btn-light" style="display: flex;color: black;">
+                    <svg class="svg-inline--fa fa-link fa-fw fa-sm mr-1" aria-hidden="true" focusable="false"
+                         data-prefix="fas" data-icon="link" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 640 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"></path>
+                    </svg>
+                    URL
+                </a>
+            </div>
+            <div class="mr-3 mb-3"
+                 style="margin-right: 16px; margin-bottom: 16px; background: white;padding: 16px;border-radius: 8px;"
+                 data-toggle="tooltip" title="Nhận cuộc gọi từ người dùng bằng cách quét mã QR.">
+                <a href="/phone" class="btn btn-light" style="display: flex;color: black;">
+                    <svg class="svg-inline--fa fa-square-phone-flip fa-fw fa-sm mr-1" aria-hidden="true"
+                         focusable="false" data-prefix="fas" data-icon="square-phone-flip" role="img"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M384 32c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96C0 60.7 28.7 32 64 32H384zm-90.7 96.7c-9.7-2.6-19.9 2.3-23.7 11.6l-20 48c-3.4 8.2-1 17.6 5.8 23.2L280 231.7c-16.6 35.2-45.1 63.7-80.3 80.3l-20.2-24.7c-5.6-6.8-15-9.2-23.2-5.8l-48 20c-9.3 3.9-14.2 14-11.6 23.7l12 44C111.1 378 119 384 128 384c123.7 0 224-100.3 224-224c0-9-6-16.9-14.7-19.3l-44-12z"></path>
+                    </svg>
+                    Điện thoại
+                </a>
+            </div>
+            <div class="mr-3 mb-3"
+                 style="margin-right: 16px; margin-bottom: 16px;background: white;padding: 16px;border-radius: 8px;"
+                 data-toggle="tooltip" title="Nhận email tùy chỉnh từ người khác bằng cách quét mã QR.">
+                <a href="/email" class="btn btn-light" style="display: flex;color: black;">
+                    <svg class="svg-inline--fa fa-envelope fa-fw fa-sm mr-1" aria-hidden="true" focusable="false"
+                         data-prefix="fas" data-icon="envelope" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"></path>
+                    </svg>
+                    Email
+                </a>
+            </div>
+            <div class="mr-3 mb-3"
+                 style="margin-right: 16px; margin-bottom: 16px;background: white;padding: 16px;border-radius: 8px;"
+                 data-toggle="tooltip"
+                 title="Tạo mã QR WiFi và cho phép mọi người kết nối với WiFi của bạn một cách dễ dàng hơn">
+                <a href="/wifi" class="btn btn-light" style="display: flex;color: black;">
+                    <svg class="svg-inline--fa fa-wifi fa-fw fa-sm mr-1" aria-hidden="true" focusable="false"
+                         data-prefix="fas" data-icon="wifi" role="img" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 640 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                              d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"></path>
+                    </svg>
+                    WiFi
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-container-form">
+        <div class="container-form">
+            <form id="qrForm" style="width: 90%">
+                <h2 style="margin-bottom: 5px;font-size: 15px;"><%= __('label1-input-wifi') %></h2>
+                <div class="input-group">
+                    <input type="text" class="input" id="url" name="url"
+                           placeholder="Ex: <%= __('placeholder1-input-wifi') %>"
+                           autocomplete="off">
+                    <button class="button--submit" id="pasteButton" value="Subscribe"><%= __('text-pastes') %></button>
+                </div>
+                <h2 style="margin-bottom: 5px;margin-top: 20px;font-size: 15px;"><%= __('label2-input-wifi') %></h2>
+                <div class="input-group">
+                    <input type="text" class="input" id="pass" name="url"
+                           placeholder="Ex: <%= __('placeholder2-input-wifi') %>"
+                           autocomplete="off" style="border-radius: 5px">
+                </div>
+                <h2 style="margin-bottom: 5px;margin-top: 20px;font-size: 15px;"><%= __('label3-input-wifi') %></h2>
+                <div class="input-group">
+                    <select id="encryption" name="encryption" required class="input" style="border-radius: 6px">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="nopass">None</option>
+                    </select>
+                </div>
+
+                <button type="button" class="button" id="createQr">
+                    <span id="content-button" class="button__text"><%= __('text-button') %></span>
+                </button>
+            </form>
+
+        </div>
+        <div id="qrCodeContainer" class="container-result">
+            <div id="qrCode1Container" class="qr-code-container">
+                <img id="img_default" src="/images/default.png" alt="QR Code" style="opacity: 0.1">
+            </div>
+            <svg viewBox="25 25 50 50" style="display: none" id="loading2">
+                <circle r="20" cy="50" cx="50"></circle>
+            </svg>
+        </div>
+    </div>
+
+</section>
+
+<section style="width: 80%; height: 100%;margin:0 auto; line-height: 25px">
+    <section id="how-to-wifi" style="margin-bottom: 30px;">
+        <h2 style="color: #616568;"><%= __('h2-how-to-wifi') %></h2>
+        <p style="margin-top: 5px;margin-left: 15px"><%= __('p1-how-to-wifi') %></p>
+        <ol style="margin-top: 5px">
+            <li><%= __('li1-how-to-wifi') %></li>
+            <li><%= __('li2-how-to-wifi') %></li>
+            <li><%= __('li3-how-to-wifi') %></li>
+            <li><%= __('li4-how-to-wifi') %></li>
+            <li><%= __('li5-how-to-wifi') %></li>
+        </ol>
+        <p style="margin-top: 5px;margin-left: 15px"><%= __('p2-how-to-wifi') %></p>
+    </section>
+    <section id="how-to-scan-wifi" style="margin-bottom: 30px;">
+        <h2 style="color: #616568;"><%= __('h2-how-to-scan-wifi') %></h2>
+        <p style="margin-top: 5px;margin-left:15px"><%= __('p1-how-to-scan-wifi') %></p>
+        <ol style="margin-top: 5px">
+            <li><%= __('li1-how-to-scan-wifi') %></li>
+            <li><%= __('li2-how-to-scan-wifi') %></li>
+            <li><%= __('li3-how-to-scan-wifi') %></li>
+            <li><%= __('li4-how-to-scan-wifi') %></li>
+        </ol>
+        <p style="margin-top: 5px;margin-left:15px"><%= __('p2-how-to-scan-wifi') %></p>
+    </section>
+    <section id="benefits-wifi" style="margin-bottom: 30px;">
+        <h2 style="color: #616568;"><%=__('h2-benefits-wifi')%></h2>
+        <p style="margin-top: 5px;margin-left:15px"><%=__('p1-benefits-wifi')%></p>
+        <ul style="margin-top: 5px;margin-left:15px">
+            <li><strong style="color: #616568;"><%=__('strong1-benefits-wifi')%></strong><%=__('li1-benefits-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong2-benefits-wifi')%></strong><%=__('li2-benefits-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong3-benefits-wifi')%></strong><%=__('li3-benefits-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong4-benefits-wifi')%></strong><%=__('li4-benefits-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong5-benefits-wifi')%></strong><%=__('li5-benefits-wifi')%></li>
+        </ul>
+    </section>
+    <section id="uses-wifi" style="margin-bottom: 30px;">
+        <h2 style="color: #616568;"><%=__('h2-uses-wifi')%></h2>
+        <p style="margin-top: 5px;margin-left:15px"><%=__('p1-uses-wifi')%></p>
+        <ul style="margin-top: 5px;margin-left:15px">
+            <li><strong style="color: #616568;"><%=__('strong1-uses-wifi')%></strong><%=__('li1-uses-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong2-uses-wifi')%></strong><%=__('li2-uses-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong3-uses-wifi')%></strong><%=__('li3-uses-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong4-uses-wifi')%></strong><%=__('li4-uses-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong5-uses-wifi')%></strong><%=__('li5-uses-wifi')%></li>
+            <li><strong style="color: #616568;"><%=__('strong6-uses-wifi')%></strong><%=__('li6-uses-wifi')%></li>
+        </ul>
+    </section>
+    
+</section>
+
+<section style="margin-top: 40px;margin-bottom: 40px">
+    <div class="content-faqs" style="width: 80%; height: 100%;margin:0 auto;">
+        <h2 style="color: #616568;"><%= __('title-h4-faqs') %></h2>
+
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs1-wifi') %>
+                    <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs1-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs2-wifi') %>
+                    <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs2-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs3-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs3-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs4-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs4-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs5-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs5-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs6-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs6-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs7-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs7-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs8-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs8-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs9-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs9-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mlr">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button itemprop="name" class="accordion"><%= __('name-faqs10-wifi') %><i
+                            class="ri-arrow-down-s-line dropdown__arrow"></i>
+                </button>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="panel">
+                    <ul>
+                        <li>
+                            <p itemprop="text"><%= __('text-faqs10-wifi') %></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer style="padding-bottom: 10px">
+    <div class="footer-content">
+        <p>Designed by <a href="/">QRMeup</a></p>
+        <p>&copy; 2024 - All rights reserved</p>
+    </div>
+</footer>
+
+<script type="text/javascript" defer>
+    document.getElementById('createQr').addEventListener('click', async function (e) {
+        e.preventDefault();
+        const ssid = document.getElementById('url').value;
+        const pass = document.getElementById('pass').value;
+        const encryption = document.getElementById('encryption').value;
+        const btnLoading = document.getElementById('createQr');
+
+        if (ssid===""||pass ===""||encryption ===""){
+            alert("Please enter information")
+            return
+        }
+        btnLoading.classList.add("button--loading")
+
+
+        const response = await fetch('/qrWifi/generate-qr-wifi', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ssid,
+                password:pass,
+                encryption
+            })
+        }).finally(()=>{
+            btnLoading.classList.remove("button--loading")
+        });
+        const data = await response.json();
+        const qrResult = document.getElementById('qrCode1Container');
+        qrResult.innerHTML = `
+                <img id="qr-image" src="${data.url}">
+                <div style="width: 100%; display: flex;justify-content: center;">
+                     <button id="download-button" onclick="download('${data.url}')" class="Btn">
+                       <svg style="margin-right: 0px" class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path>
+                       </svg>
+                       <span class="icon2"></span> Download
+                     </button>
+                </div>
+            `;
+    });
+
+    // Thêm sự kiện click cho nút tải xuống
+    function download(url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'qr-code.png';
+        link.click();
+    }
+
+
+    const showMenu = (e, n) => {
+        const t = document.getElementById(e), o = document.getElementById(n), a = document.getElementById("createQr"),
+            s = document.getElementById("loading2"), c = document.getElementById("img_default");
+        t.addEventListener("click", (() => {
+            o.classList.toggle("show-menu"), a.style.position = "initial", s.style.display = "none", c.style.opacity = 1, t.classList.toggle("show-icon"), console.log(typeof t.className), console.log(t.className), "nav__toggle" === t.className && (c.style.opacity = .1)
+        }))
+    };
+    showMenu("nav-toggle", "nav-menu");
+    const acc = document.getElementsByClassName("accordion");
+    let i;
+    for (i = 0; i < acc.length; i++) acc[i].addEventListener("click", (function () {
+        this.classList.toggle("active");
+        const e = this.nextElementSibling;
+        e.style.maxHeight ? e.style.maxHeight = null : e.style.maxHeight = e.scrollHeight + "px"
+    }));
+
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "<%= __('name-faqs1-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs1-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs2-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs2-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs3-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs3-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs4-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs4-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs5-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs5-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs6-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs6-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs7-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs7-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs8-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs8-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs9-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs9-wifi') %>"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "<%= __('name-faqs10-wifi') %>",
+                    "acceptedAnswer": {
+   "@type": "Answer",
+   "text": "<%= __('text-faqs10-wifi') %>"
+                    }
+                }
+
+            ]
+        }
+</script>
+
+</body>
+</html>

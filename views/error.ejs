@@ -1,3 +1,83 @@
 <h1><%= message %></h1>
 <h2><%= error.status %></h2>
 <pre><%= error.stack %></pre>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Wi-Fi QR Code Generator</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Wi-Fi QR Code Generator</h1>-->
+<!--<div class="container-form">-->
+<!--    <form id="wifiForm" style="width: 90%">-->
+<!--        <h2>Input Wi-Fi Details</h2>-->
+<!--        <div class="input-group">-->
+<!--            <input type="text" id="ssid" name="ssid" placeholder="SSID" required>-->
+<!--        </div>-->
+<!--        <div class="input-group">-->
+<!--            <input type="password" id="password" name="password" placeholder="Password" required>-->
+<!--        </div>-->
+<!--        <div class="input-group">-->
+<!--            <select id="encryption" name="encryption" required>-->
+<!--                <option value="WPA">WPA/WPA2</option>-->
+<!--                <option value="WEP">WEP</option>-->
+<!--                <option value="nopass">None</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <button type="button" id="createQr">Generate QR Code</button>-->
+<!--    </form>-->
+<!--</div>-->
+<!--<div id="qrCodeContainer" class="container-result">-->
+<!--    <div id="qrCode1Container" class="qr-code-container">-->
+<!--        <img id="img_default" src="/images/default.png" alt="QR Code" style="opacity: 0.1">-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    document.getElementById('createQr').addEventListener('click', async function (e) {-->
+<!--        e.preventDefault();-->
+<!--        const ssid = document.getElementById('ssid').value;-->
+<!--        const password = document.getElementById('password').value;-->
+<!--        const encryption = document.getElementById('encryption').value;-->
+
+<!--        console.log(ssid)-->
+<!--        console.log(password)-->
+<!--        console.log(encryption)-->
+
+<!--        const response = await fetch('/qrWifi/generate-qr-wifi', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json'-->
+<!--            },-->
+<!--            body: JSON.stringify({ ssid, password, encryption })-->
+<!--        });-->
+
+<!--        const data = await response.json();-->
+<!--        const qrResult = document.getElementById('qrCode1Container');-->
+<!--        qrResult.innerHTML = `-->
+<!--                <img id="qr-image" src="${data.url}" alt="QR Code" style="width: 300px;">-->
+<!--                <div style="width: 100%; display: flex; justify-content: center;">-->
+<!--                    <button id="download-button" onclick="download('${data.url}')" class="Btn">-->
+<!--                        <svg style="margin-right: 0px" class="svgIcon" viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path>-->
+<!--                        </svg>-->
+<!--                        <span class="icon2"></span> Download-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            `;-->
+<!--    });-->
+
+<!--    function download(url) {-->
+<!--        const link = document.createElement('a');-->
+<!--        link.href = url;-->
+<!--        link.download = 'qr-code.png';-->
+<!--        link.click();-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+

@@ -123,6 +123,11 @@ i18n.configure({
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var qrTextRouter = require('./routes/qrtext');
+var qrPhoneRouter = require('./routes/qrphone');
+var qrEmailRouter = require('./routes/qremail');
+var qrWifiRouter = require('./routes/qrwifi');
+
 var app = express();
 
 //Áp dụng ngôn ngữ cho trang web
@@ -140,6 +145,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/qrText', qrTextRouter);
+app.use('/qrPhone',qrPhoneRouter)
+app.use('/qrEmail',qrEmailRouter)
+app.use('/qrWifi',qrWifiRouter)
 
 // // Config start
 // //Đọc các file json có trong folder language
@@ -215,7 +224,39 @@ app.get('/', function (req, res) {
     i18n.setLocale(req, 'en')
     res.render('index', {lang: lang})
 })
-app.get('/:lang', function (req, res, next) {
+
+app.get('/text', function (req, res) {
+    let lang = 'en';
+    console.log(lang);
+    i18n.setLocale(req, 'en')
+    res.render('qrtext', {lang: lang})
+})
+app.get('/bank', function (req, res) {
+    let lang = 'en';
+    console.log(lang);
+    i18n.setLocale(req, 'en')
+    res.render('qrbank', {lang: lang})
+})
+app.get('/wifi', function (req, res) {
+    let lang = 'en';
+    console.log(lang);
+    i18n.setLocale(req, 'en')
+    res.render('qrwifi', {lang: lang})
+})
+app.get('/phone', function (req, res) {
+    let lang = 'en';
+    console.log(lang);
+    i18n.setLocale(req, 'en')
+    res.render('qrphone', {lang: lang})
+})
+app.get('/email', function (req, res) {
+    let lang = 'en';
+    console.log(lang);
+    i18n.setLocale(req, 'en')
+    res.render('qremail', {lang: lang})
+})
+
+app.get('/:lang?', function (req, res, next) {
     // lấy ra địa chỉ truy vấn
     console.log("Not index")
     const q = req.url;
@@ -238,6 +279,126 @@ app.get('/:lang', function (req, res, next) {
     if (lang == undefined) lang = 'en'
     i18n.setLocale(req, lang)
     res.render('index', {lang: lang})
+})
+app.get('/:lang?/text', function (req, res, next) {
+    // lấy ra địa chỉ truy vấn
+    console.log("Not index")
+    const q = req.url;
+    // tách ra language code từ địa chỉ truy vấn
+    let dash = q.split("/");
+    let lang = undefined
+    if (dash.length >= 2) {
+        let code = dash[1];
+        console.log(language_dict)
+        console.log('code = ' + code)
+        console.log(language_dict[code])
+        if (code !== '' && language_dict.hasOwnProperty(code)) {
+            lang = code;
+            console.log('AAAA' + lang)
+        } else {
+            next(createError(404))
+            return
+        }
+    }
+    if (lang == undefined) lang = 'en'
+    i18n.setLocale(req, lang)
+    res.render('qrtext', {lang: lang})
+})
+app.get('/:lang?/phone', function (req, res, next) {
+    // lấy ra địa chỉ truy vấn
+    console.log("Not index")
+    const q = req.url;
+    // tách ra language code từ địa chỉ truy vấn
+    let dash = q.split("/");
+    let lang = undefined
+    if (dash.length >= 2) {
+        let code = dash[1];
+        console.log(language_dict)
+        console.log('code = ' + code)
+        console.log(language_dict[code])
+        if (code !== '' && language_dict.hasOwnProperty(code)) {
+            lang = code;
+            console.log('AAAA' + lang)
+        } else {
+            next(createError(404))
+            return
+        }
+    }
+    if (lang == undefined) lang = 'en'
+    i18n.setLocale(req, lang)
+    res.render('qrphone', {lang: lang})
+})
+app.get('/:lang?/bank', function (req, res, next) {
+    // lấy ra địa chỉ truy vấn
+    console.log("Not index")
+    const q = req.url;
+    // tách ra language code từ địa chỉ truy vấn
+    let dash = q.split("/");
+    let lang = undefined
+    if (dash.length >= 2) {
+        let code = dash[1];
+        console.log(language_dict)
+        console.log('code = ' + code)
+        console.log(language_dict[code])
+        if (code !== '' && language_dict.hasOwnProperty(code)) {
+            lang = code;
+            console.log('AAAA' + lang)
+        } else {
+            next(createError(404))
+            return
+        }
+    }
+    if (lang == undefined) lang = 'en'
+    i18n.setLocale(req, lang)
+    res.render('qrbank', {lang: lang})
+})
+app.get('/:lang?/email', function (req, res, next) {
+    // lấy ra địa chỉ truy vấn
+    console.log("Not index")
+    const q = req.url;
+    // tách ra language code từ địa chỉ truy vấn
+    let dash = q.split("/");
+    let lang = undefined
+    if (dash.length >= 2) {
+        let code = dash[1];
+        console.log(language_dict)
+        console.log('code = ' + code)
+        console.log(language_dict[code])
+        if (code !== '' && language_dict.hasOwnProperty(code)) {
+            lang = code;
+            console.log('AAAA' + lang)
+        } else {
+            next(createError(404))
+            return
+        }
+    }
+    if (lang == undefined) lang = 'en'
+    i18n.setLocale(req, lang)
+    res.render('qremail', {lang: lang})
+})
+app.get('/:lang?/wifi', function (req, res, next) {
+    // lấy ra địa chỉ truy vấn
+    console.log("Not index")
+    const q = req.url;
+    // tách ra language code từ địa chỉ truy vấn
+    let dash = q.split("/");
+    let lang = undefined
+    if (dash.length >= 2) {
+        let code = dash[1];
+        console.log(language_dict)
+        console.log('code = ' + code)
+        console.log(language_dict[code])
+        if (code !== '' && language_dict.hasOwnProperty(code)) {
+            lang = code;
+            console.log('AAAA' + lang)
+        } else {
+            next(createError(404))
+            return
+        }
+    }
+    if (lang == undefined) lang = 'en'
+    i18n.setLocale(req, lang)
+    res.render('qrwifi', {lang: lang})
 })
 
 //config window end
