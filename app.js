@@ -220,8 +220,8 @@ const language_dict = {};
 // });
 glob.sync('./language/*.json').forEach(function (file) {
     let dash = file.split("/");
-    if (dash.length == 3) {
-        let dot = dash[2].split(".");
+    if (dash.length == 2) {
+        let dot = dash[1].split(".");
         if (dot.length == 2) {
             let lang = dot[0];
             fs.readFile(file, function (err, data) {
