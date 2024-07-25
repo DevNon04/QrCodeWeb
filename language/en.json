@@ -308,9 +308,9 @@
 	"text-faqs9-wifi": "To ensure your WiFi QR code is scannable, make sure it is clear and not distorted. Print it at a sufficient size and avoid placing it on busy backgrounds. Test the QR code with multiple devices to confirm it works properly.",
 	"name-faqs10-wifi": "Can I use a WiFi QR code for encrypted networks?",
 	"text-faqs10-wifi": "Yes, you can create a WiFi QR code for encrypted networks by selecting the appropriate encryption type (WPA/WPA2 or WEP) and entering the network password. This ensures a secure connection for users.",
-	"canonical-url": "https://qrmeup.onrender.com/en/url",
-	"canonical-text": "https://qrmeup.onrender.com/en/text",
-	"canonical-phone": "https://qrmeup.onrender.com/en/phone",
-	"canonical-email": "https://qrmeup.onrender.com/en/email",
-	"canonical-wifi": "https://qrmeup.onrender.com/en/wifi"
+	"canonical-url": "https://qrmeup.onrender.com",
+	"canonical-text": "https://qrmeup.onrender.com/text",
+	"canonical-phone": "https://qrmeup.onrender.com/phone",
+	"canonical-email": "https://qrmeup.onrender.com/email",
+	"canonical-wifi": "https://qrmeup.onrender.com/wifi"
 }

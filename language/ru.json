@@ -304,7 +304,7 @@
 	"text-faqs9-wifi": "Чтобы гарантировать сканируемость вашего WiFi QR-кода, убедитесь, что он четкий и не искажен. Распечатайте его достаточного размера и избегайте размещения на занятых фонах. Проверьте QR-код с различных устройств, чтобы убедиться, что он работает правильно.",
 	"name-faqs10-wifi": "Могу ли я использовать WiFi QR-код для зашифрованных сетей?",
 	"text-faqs10-wifi": "Да, вы можете создать WiFi QR-код для зашифрованных сетей, выбрав соответствующий тип шифрования (WPA/WPA2 или WEP) и введя пароль сети. Это обеспечивает безопасное подключение для пользователей.",
-	"canonical-url": "https://qrmeup.onrender.com/ru/url",
+	"canonical-url": "https://qrmeup.onrender.com/ru",
 	"canonical-text": "https://qrmeup.onrender.com/ru/text",
 	"canonical-phone": "https://qrmeup.onrender.com/ru/phone",
 	"canonical-email": "https://qrmeup.onrender.com/ru/email",

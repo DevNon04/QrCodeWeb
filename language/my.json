@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "Untuk memastikan kod QR WiFi anda boleh diimbas, pastikan ia jelas dan tidak terdistorsi. Cetak pada saiz yang mencukupi dan elakkan meletakkannya di latar belakang yang sibuk. Uji kod QR dengan pelbagai peranti untuk mengesahkan ia berfungsi dengan baik.",
 	"name-faqs10-wifi": "Bolehkah saya menggunakan kod QR WiFi untuk rangkaian yang disulitkan?",
 	"text-faqs10-wifi": "Ya, anda boleh mencipta kod QR WiFi untuk rangkaian yang disulitkan dengan memilih jenis penyulitan yang sesuai (WPA/WPA2 atau WEP) dan memasukkan kata laluan rangkaian. Ini memastikan sambungan yang selamat untuk pengguna.",
-	"canonical-url": "https://qrmeup.onrender.com/my/url",
+	"canonical-url": "https://qrmeup.onrender.com/my",
 	"canonical-text": "https://qrmeup.onrender.com/my/text",
 	"canonical-phone": "https://qrmeup.onrender.com/my/phone",
 	"canonical-email": "https://qrmeup.onrender.com/my/email",

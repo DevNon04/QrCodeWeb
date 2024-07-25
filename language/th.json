@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "เพื่อให้แน่ใจว่า WiFi QR code ของคุณสามารถสแกนได้ ให้แน่ใจว่ามันชัดเจนและไม่เบลอ พิมพ์ขนาดที่เพียงพอและหลีกเลี่ยงการวางไว้บนพื้นหลังที่วุ่นวาย ทดสอบ QR code ด้วยอุปกรณ์หลายๆ เครื่องเพื่อยืนยันว่ามันทำงานอย่างถูกต้อง",
 	"name-faqs10-wifi": "ฉันสามารถใช้ WiFi QR code สำหรับเครือข่ายที่เข้ารหัสได้หรือไม่?",
 	"text-faqs10-wifi": "ใช่ คุณสามารถสร้าง WiFi QR code สำหรับเครือข่ายที่เข้ารหัสได้โดยเลือกประเภทการเข้ารหัสที่เหมาะสม (WPA/WPA2 หรือ WEP) และใส่รหัสผ่านเครือข่าย นี้ช่วยให้การเชื่อมต่อปลอดภัยสำหรับผู้ใช้",
-	"canonical-url": "https://qrmeup.onrender.com/th/url",
+	"canonical-url": "https://qrmeup.onrender.com/th",
 	"canonical-text": "https://qrmeup.onrender.com/th/text",
 	"canonical-phone": "https://qrmeup.onrender.com/th/phone",
 	"canonical-email": "https://qrmeup.onrender.com/th/email",

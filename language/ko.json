@@ -308,7 +308,7 @@
 	"name-faqs10-wifi": "암호화된 네트워크에 WiFi QR 코드를 사용할 수 있나요?",
 	"text-faqs10-wifi": "네, 암호화된 네트워크에 WiFi QR 코드를 생성할 수 있습니다. 적절한 암호화 유형(WPA/WPA2 또는 WEP)을 선택하고 네트워크 비밀번호를 입력하세요. 이로 인해 사용자에게 안전한 연결이 보장됩니다.",
 	"lang": "ko",
-	"canonical-url": "https://qrmeup.onrender.com/ko/url",
+	"canonical-url": "https://qrmeup.onrender.com/ko",
 	"canonical-text": "https://qrmeup.onrender.com/ko/text",
 	"canonical-phone": "https://qrmeup.onrender.com/ko/phone",
 	"canonical-email": "https://qrmeup.onrender.com/ko/email",

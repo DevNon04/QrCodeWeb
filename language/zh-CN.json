@@ -306,7 +306,7 @@
 	"text-faqs9-wifi": "要确保您的WiFi QR码可以被扫描，请确保它清晰且没有扭曲。打印时要足够大，并避免放置在繁忙的背景上。使用多种设备测试QR码，以确认其正常工作。",
 	"name-faqs10-wifi": "我可以为加密网络使用WiFi QR码吗？",
 	"text-faqs10-wifi": "是的，您可以通过选择适当的加密类型（WPA/WPA2或WEP）并输入网络密码来为加密网络创建WiFi QR码。这可以确保用户连接到安全的网络。",
-	"canonical-url": "https://qrmeup.onrender.com/zh-CN/url",
+	"canonical-url": "https://qrmeup.onrender.com/zh-CN",
 	"canonical-text": "https://qrmeup.onrender.com/zh-CN/text",
 	"canonical-phone": "https://qrmeup.onrender.com/zh-CN/phone",
 	"canonical-email": "https://qrmeup.onrender.com/zh-CN/email",

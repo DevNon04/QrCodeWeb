@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "Untuk memastikan QR code WiFi Anda dapat dipindai, pastikan QR code tersebut jelas dan tidak terdistorsi. Cetak dengan ukuran yang cukup dan hindari tempatkan di latar belakang yang ramai. Uji QR code dengan beberapa perangkat untuk memastikan bahwa QR code berfungsi dengan baik.",
 	"name-faqs10-wifi": "Dapatkah saya menggunakan QR code WiFi untuk jaringan yang terenkripsi?",
 	"text-faqs10-wifi": "Ya, Anda dapat membuat QR code WiFi untuk jaringan yang terenkripsi dengan memilih jenis enkripsi yang sesuai (WPA/WPA2 atau WEP) dan memasukkan kata sandi jaringan. Ini memastikan koneksi yang aman bagi pengguna.",
-	"canonical-url": "https://qrmeup.onrender.com/id/url",
+	"canonical-url": "https://qrmeup.onrender.com/id",
 	"canonical-text": "https://qrmeup.onrender.com/id/text",
 	"canonical-phone": "https://qrmeup.onrender.com/id/phone",
 	"canonical-email": "https://qrmeup.onrender.com/id/email",

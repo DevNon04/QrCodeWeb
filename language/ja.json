@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "WiFi QRコードがスキャン可能であることを確認するには、歪みがなくクリアな状態で印刷し、ビジーな背景に配置しないようにします。複数のデバイスでQRコードをテストし、正常に動作することを確認します。",
 	"name-faqs10-wifi": "暗号化されたネットワークにWiFi QRコードを使用できますか？",
 	"text-faqs10-wifi": "はい、WPA/WPA2またはWEPの適切な暗号化方式を選択し、ネットワークパスワードを入力することで、暗号化されたネットワーク用のWiFi QRコードを作成できます。これにより、ユーザーに安全な接続を提供します。",
-	"canonical-url": "https://qrmeup.onrender.com/ja/url",
+	"canonical-url": "https://qrmeup.onrender.com/ja",
 	"canonical-text": "https://qrmeup.onrender.com/js/text",
 	"canonical-phone": "https://qrmeup.onrender.com/ja/phone",
 	"canonical-email": "https://qrmeup.onrender.com/ja/email",

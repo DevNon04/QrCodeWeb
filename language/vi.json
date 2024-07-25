@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "Để đảm bảo mã QR WiFi của bạn có thể quét được, hãy chắc chắn rằng nó rõ ràng và không bị méo mó. In nó với kích thước đủ lớn và tránh đặt nó trên nền nhiễu. Kiểm tra mã QR với nhiều thiết bị để xác nhận rằng nó hoạt động đúng cách.",
 	"name-faqs10-wifi": "Tôi có thể sử dụng mã QR WiFi cho các mạng được mã hóa không?",
 	"text-faqs10-wifi": "Có, bạn có thể tạo mã QR WiFi cho các mạng được mã hóa bằng cách chọn loại mã hóa phù hợp (WPA/WPA2 hoặc WEP) và nhập mật khẩu mạng. Điều này đảm bảo kết nối an toàn cho người dùng.",
-	"canonical-url": "https://qrmeup.onrender.com/vi/url",
+	"canonical-url": "https://qrmeup.onrender.com/vi",
 	"canonical-text": "https://qrmeup.onrender.com/vi/text",
 	"canonical-phone": "https://qrmeup.onrender.com/vi/phone",
 	"canonical-email": "https://qrmeup.onrender.com/vi/email",

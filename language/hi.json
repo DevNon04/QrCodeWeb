@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "यह सुनिश्चित करने के लिए कि आपका वाइफाई क्यूआर कोड स्कैन करने योग्य है, सुनिश्चित करें कि यह स्पष्ट है और विकृत नहीं है। इसे पर्याप्त आकार में प्रिंट करें और व्यस्त पृष्ठभूमि पर इसे न रखें। इसे सही तरीके से काम करने की पुष्टि के लिए कई उपकरणों के साथ क्यूआर कोड का परीक्षण करें।",
 	"name-faqs10-wifi": "क्या मैं एन्क्रिप्टेड नेटवर्क के लिए वाइफाई क्यूआर कोड का उपयोग कर सकता हूं?",
 	"text-faqs10-wifi": "हां, आप एन्क्रिप्टेड नेटवर्क के लिए वाइफाई क्यूआर कोड बना सकते हैं सही एन्क्रिप्शन प्रकार (WPA/WPA2 या WEP) का चयन करके और नेटवर्क पासवर्ड दर्ज करके। यह उपयोगकर्ताओं के लिए एक सुरक्षित कनेक्शन सुनिश्चित करता है।",
-	"canonical-url": "https://qrmeup.onrender.com/hi/url",
+	"canonical-url": "https://qrmeup.onrender.com/hi",
 	"canonical-text": "https://qrmeup.onrender.com/hi/text",
 	"canonical-phone": "https://qrmeup.onrender.com/hi/phone",
 	"canonical-email": "https://qrmeup.onrender.com/hi/email",

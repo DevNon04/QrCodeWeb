@@ -308,7 +308,7 @@
 	"text-faqs9-wifi": "Pentru a te asigura că codul tău QR WiFi poate fi scanat, asigură-te că este clar și necurvurat. Imprimă-l la o dimensiune suficientă și evită să-l plasezi pe fundaluri aglomerate. Testează codul QR cu mai multe dispozitive pentru a confirma că funcționează corect.",
 	"name-faqs10-wifi": "Pot folosi un cod QR WiFi pentru rețele criptate?",
 	"text-faqs10-wifi": "Da, poți crea un cod QR WiFi pentru rețele criptate selectând tipul corespunzător de criptare (WPA/WPA2 sau WEP) și introducând parola rețelei. Acest lucru asigură o conexiune sigură pentru utilizatori.",
-	"canonical-url": "https://qrmeup.onrender.com/ro/url",
+	"canonical-url": "https://qrmeup.onrender.com/ro",
 	"canonical-text": "https://qrmeup.onrender.com/ro/text",
 	"canonical-phone": "https://qrmeup.onrender.com/ro/phone",
 	"canonical-email": "https://qrmeup.onrender.com/ro/email",
