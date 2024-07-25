@@ -204,18 +204,30 @@ app.use('/qrWifi',qrWifiRouter)
 
 // Config window start
 const language_dict = {};
-glob.sync('./language/*.json').forEach(function (file) {
-    let dash = file.split("\\");
-    if (dash.length == 2) {
-        let dot = dash[1].split(".");
+// glob.sync('./language/*.json').forEach(function (file) {
+//     let dash = file.split("\\");
+//     if (dash.length == 2) {
+//         let dot = dash[1].split(".");
+//         if (dot.length == 2) {
+//             let lang = dot[0];
+//             fs.readFile(file, function (err, data) {
+//                 language_dict[lang] = JSON.parse(data.toString());
+//             });
+//         }
+//     } else {
+//         console.log("lkkkk")
+//     }
+// });
+glob.sync('../language/*.json').forEach(function (file) {
+    let dash = file.split("/");
+    if (dash.length == 3) {
+        let dot = dash[2].split(".");
         if (dot.length == 2) {
             let lang = dot[0];
             fs.readFile(file, function (err, data) {
                 language_dict[lang] = JSON.parse(data.toString());
             });
         }
-    } else {
-        console.log("lkkkk")
     }
 });
 app.get('/', function (req, res) {
