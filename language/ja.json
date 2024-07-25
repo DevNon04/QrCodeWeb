@@ -309,7 +309,7 @@
 	"name-faqs10-wifi": "暗号化されたネットワークにWiFi QRコードを使用できますか？",
 	"text-faqs10-wifi": "はい、WPA/WPA2またはWEPの適切な暗号化方式を選択し、ネットワークパスワードを入力することで、暗号化されたネットワーク用のWiFi QRコードを作成できます。これにより、ユーザーに安全な接続を提供します。",
 	"canonical-url": "https://qrmeup.onrender.com/ja",
-	"canonical-text": "https://qrmeup.onrender.com/js/text",
+	"canonical-text": "https://qrmeup.onrender.com/ja/text",
 	"canonical-phone": "https://qrmeup.onrender.com/ja/phone",
 	"canonical-email": "https://qrmeup.onrender.com/ja/email",
 	"canonical-wifi": "https://qrmeup.onrender.com/ja/wifi"
