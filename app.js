@@ -340,30 +340,6 @@ app.get('/:lang?/phone', function (req, res, next) {
     i18n.setLocale(req, lang)
     res.render('qrphone', {lang: lang})
 })
-app.get('/:lang?/bank', function (req, res, next) {
-    // lấy ra địa chỉ truy vấn
-    console.log("Not index")
-    const q = req.url;
-    // tách ra language code từ địa chỉ truy vấn
-    let dash = q.split("/");
-    let lang = undefined
-    if (dash.length >= 2) {
-        let code = dash[1];
-        console.log(language_dict)
-        console.log('code = ' + code)
-        console.log(language_dict[code])
-        if (code !== '' && language_dict.hasOwnProperty(code)) {
-            lang = code;
-            console.log('AAAA' + lang)
-        } else {
-            next(createError(404))
-            return
-        }
-    }
-    if (lang == undefined) lang = 'en'
-    i18n.setLocale(req, lang)
-    res.render('qrbank', {lang: lang})
-})
 app.get('/:lang?/email', function (req, res, next) {
     // lấy ra địa chỉ truy vấn
     console.log("Not index")
