@@ -218,7 +218,7 @@ const language_dict = {};
 //         console.log("lkkkk")
 //     }
 // });
-glob.sync('../language/*.json').forEach(function (file) {
+glob.sync('./language/*.json').forEach(function (file) {
     let dash = file.split("/");
     if (dash.length == 3) {
         let dot = dash[2].split(".");
